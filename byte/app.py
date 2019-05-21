@@ -7,9 +7,19 @@ model.init_db()
 @app.route("/", methods=["POST","GET"])
 def home():
     if  request.method == 'POST':
-         action = request.form['action']
-         todos = model.show()
-         return render_template('home.html', todos = todos, action= action)
+        if request.form['action'] == 'search':
+            action = request.form['action']
+            todos = model.show()
+            players = request.form.getlist('check')
+            # item = request.form['todos[0]']
+            item = model.get_score(players)
+            return render_template('home.html', todos = todos, action = action, item = item)
+
+        elif request.form['action'] == 'science':
+            action = request.form['action']
+            todos = model.datasci()
+            return render_template('home.html',todos = todos, action = action)
+
     elif request.method == 'GET':
          return render_template('home.html')
 
