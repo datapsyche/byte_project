@@ -1,4 +1,25 @@
 import sqlite3
+import pandas as pd
+
+
+def manual_list(role):
+    if role == 'datascience':
+        temp = pd.read_csv("DS.csv")
+        temp = temp[['skills','values']].set_index('skills')
+        return temp.to_dict()['values']
+    elif role == 'fullstack':
+        temp = pd.read_csv("FSD.csv")
+        temp = temp[['skills','values']].set_index('skills')
+        return temp.to_dict()['values']
+    return 
+    
+    # temp['skills'].to_list(),temp['values'].to_list(), 
+
+def get_manual_score(selected_skills, skill_dict):
+    score = 0
+    for skill in selected_skills:
+        score = score + skill_dict[skill]
+    return score
 
 
 def init_db():
@@ -19,8 +40,6 @@ def show():
     for item in full_stack_results:
         python_list.append([item[1]])
     return python_list
-    # print(python_list)
-# show()
 
 def datasci():
     conn=sqlite3.connect('skill.db')
@@ -45,9 +64,8 @@ def get_score(players):
         s+=sum(i)
     return s
 
-
-        # l.append(value)
-    # print(l)
-
 if __name__=='__main__':
-    init_db()
+    temp= manual_list(role='fullstack')
+    print(temp)
+    # print(val)
+    # init_db()

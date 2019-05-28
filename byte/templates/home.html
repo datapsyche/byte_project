@@ -1,126 +1,83 @@
 {% extends "base.html" %}
 {% block body %}
 <br>
-<br>
+{% if view_more == False %}
 <div class="card-group">
   <div class="card">
-    <img class="card-img-top" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTyEMwqlvA4kD4vxQGpo4ODFNzkAkTpaV6QPGT_zCUSPChBN12k" alt="Card image cap">
+    <img class="card-img-top"
+      src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTyEMwqlvA4kD4vxQGpo4ODFNzkAkTpaV6QPGT_zCUSPChBN12k"
+      alt="Card image cap">
     <div class="card-body">
       <h5 class="card-title">Python Full Stack</h5>
-      <p class="card-text">A full stack developer is an engineer who can handle all the work of databases, servers, systems engineering, and clients.</p>
+      <p class="card-text">A full stack developer is an engineer who can handle all the work of databases, servers,
+        systems engineering, and clients.</p>
       <form class="" action="/" method="post">
-        <center><button type="submit" name="action" class="btn btn-primary btn-lg" value="search" >submit</button></center>
-        </form>
+        <center><button type="submit" name="action" class="btn btn-primary btn-lg" value="fullstack">Check the Skills Required for Full Stack Role</button></center>
+      </form>
     </div>
   </div>
+
   <br>
+
   <div class="card">
-    <img class="card-img-top" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTyEMwqlvA4kD4vxQGpo4ODFNzkAkTpaV6QPGT_zCUSPChBN12k" alt="Card image cap">
+    <img class="card-img-top"
+      src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTyEMwqlvA4kD4vxQGpo4ODFNzkAkTpaV6QPGT_zCUSPChBN12k"
+      alt="Card image cap">
     <div class="card-body">
       <h5 class="card-title">Data science</h5>
-      <p class="card-text">Data science is a multidisciplinary blend of data inference, algorithmm development, and technology in order to solve analytically complex problems.</p>
+      <p class="card-text">Data science is a multidisciplinary blend of data inference, algorithmm development, and
+        technology in order to solve analytically complex problems.</p>
       <form class="" action="/" method="post">
-          <center><button type="submit" class="btn btn-primary btn-lg" name="action" value='science'>submit</button></center>
+        <center><button type="submit" class="btn btn-primary btn-lg" name="action" value='datascience'>Check the Skills Required for Data Scientist Role</button></center>
       </form>
     </div>
   </div>
 </div>
+{% endif %}
+
+
 <br>
-<br>
-{% if action  == 'search' %}
-  <div class="card border-default mb-10" style="max-width: 50rem;">
-    <div class="card-header bg-transparent border-default">Python full Stack</div>
-        <div class="card-body text-default">
-            <h5 class="card-title">Skills</h5>
+{% if view_more == True %}
+<div class="card">
+<!--     <img class="card-img-top"
+      src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTyEMwqlvA4kD4vxQGpo4ODFNzkAkTpaV6QPGT_zCUSPChBN12k"
+      alt="Card image cap"> -->
+    <div class="card-body">
+      <h5 class="card-title">Skills Required {{ role }} Role</h5>
+      <p class="card-text">
       <form class="" action="/" method="post">
-        <!-- <div class="checkbox">
-        {% for item in todos %}
-          <label><input type="checkbox" value="{{ item[0] }}">{{item[0]}}</label>
+        <div class="form-group">
+          <label for="userData">Name</label>
+          <input type="text" class="form-control" id="name" placeholder="Enter Your Name">
+        </div>
+        <div class="form-group">
+          <label for="userData">Email</label>
+          <input type="email" class="form-control" id="email" placeholder="Enter Your Email">
+        </div>
+        <div class="form-group">
+          <label for="userData">Phone Number</label>
+          <input type="text" class="form-control" id="phone" placeholder="Enter Your Phone Number">
+        </div>
+      </p>
+      
+      {% for skill in skills %}
+        <div class="form-check form-check-inline text-justify">
+          <h4>
+        {% if skill in byte_skills %}
+          <label class="checkbox-inline"><input class="form-check-input position-static" type="checkbox" name="check" value={{ skill }}><span class="badge badge-pill badge-warning">{{ skill }}</span></label>
+        {% else %}
+          <label class="checkbox-inline"><input class="form-check-input position-static" type="checkbox" name="check" value={{ skill }}><span class="badge badge-pill badge-success">{{ skill }}</span></label>
+        {% endif %}</h4>
+        </div>
+
       {% endfor %}
-      </div> -->
-      <div class="form-check">
-  <input class="form-check-input position-static" type="checkbox" name="check" id="blankCheckbox" value="Javascript" aria-label=".."> Javascript
       </div>
-      <div class="form-check">
-  <input class="form-check-input position-static" type="checkbox" name="check" id="blankCheckbox" value="Html" aria-label="..">Html
-      </div>
-      <div class="form-check">
-  <input class="form-check-input position-static" type="checkbox" name="check" id="blankCheckbox" value="Sql" aria-label="..">Sql
-      </div>
-      <div class="form-check">
-  <input class="form-check-input position-static" type="checkbox" name="check" id="blankCheckbox" value="Jquery" aria-label="..">Jquery
-      </div>
-      <div class="form-check">
-  <input class="form-check-input position-static" type="checkbox" name="check" id="blankCheckbox" value="Css" aria-label="..">Css
-      </div>
-      <div class="form-check">
-  <input class="form-check-input position-static" type="checkbox" name="check" id="blankCheckbox" value="Php" aria-label="..">Php
-      </div>
-      <div class="form-check">
-  <input class="form-check-input position-static" type="checkbox" name="check" id="blankCheckbox" value="Java" aria-label="..">Java
-      </div>
-      <div class="form-check">
-  <input class="form-check-input position-static" type="checkbox" name="check" id="blankCheckbox" value="Python" aria-label="..">Python
-      </div>
-      <div class="form-check">
-  <input class="form-check-input position-static" type="checkbox" name="check" id="blankCheckbox" value="Angularjs" aria-label="..">Angular js
-      </div>
-      <div class="form-check">
-  <input class="form-check-input position-static" type="checkbox" name="check" id="blankCheckbox" value="Node js" aria-label="..">Node js
-      </div>
-      <div class="form-check">
-  <input class="form-check-input position-static" type="checkbox" name="check" id="blankCheckbox" value="Ajax" aria-label="..">Ajax
-      </div>
-      <div class="form-check">
-  <input class="form-check-input position-static" type="checkbox" name="check" id="blankCheckbox" value="Front End" aria-label="...">Front End
-      </div>
-      <div class="form-check">
-  <input class="form-check-input position-static" type="checkbox" name="check" id="blankCheckbox" value="Hibernate" aria-label="...">Hibernate
-      </div>
-      <div class="form-check">
-  <input class="form-check-input position-static" type="checkbox" name="check" id="blankCheckbox" value="React js" aria-label="...">React js
-      </div>
-      <div class="form-check">
-  <input class="form-check-input position-static" type="checkbox" name="check" id="blankCheckbox" value="Core Java" aria-label="...">Core Java
-      </div>
-      <div class="form-check">
-  <input class="form-check-input position-static" type="checkbox" name="check" id="blankCheckbox" value="Bootstrap" aria-label="...">Bootstrap
-      </div>
-      <div class="form-check">
-  <input class="form-check-input position-static" type="checkbox" name="check" id="blankCheckbox" value="Mongodb" aria-label="...">Mongodb
-      </div>
-      <div class="form-check">
-  <input class="form-check-input position-static" type="checkbox" name="check" id="blankCheckbox" value="Git" aria-label="...">Git
-      </div>
-      <div class="form-check">
-  <input class="form-check-input position-static" type="checkbox" name="check" id="blankCheckbox" value="Web Development" aria-label="...">Web Development
-      </div>
-      <div class="form-check">
-  <input class="form-check-input position-static" type="checkbox" name="check" id="blankCheckbox" value="Web Technologies" aria-label="...">Web Technologies
-      </div>
-      <br>
-        <button type="submit" name="action" class="btn btn-primary btn-sl" value="search" >submit</button>
-        </form>
+        <button type="submit" class="btn btn-primary btn-lg" name="action" value={{ role }}>Your Score</button>
+      </form>
     </div>
-    <div class="card-footer bg-transparent border-default"><center>{{ item }}</center></div>
   </div>
 {% endif %}
-{% if action  == 'science' %}
-  <div class="card border-default mb-10" style="max-width: 50rem;">
-    <div class="card-header bg-transparent border-default">Data science</div>
-        <div class="card-body text-default">
-            <h5 class="card-title">Skills</h5>
-      <div class="checkbox">
-        {% for item in todos %}
-          <label><input type="checkbox" value="{{ item[0] }}">{{item[0]}}</label>
-        {% endfor %}
-      </div>
-      <br>
-      <form class="" action="/" method="post">
-        <button type="submit" name="action" class="btn btn-primary btn-sl" value="search" >submit</button>
-        </form>
-    </div>
-    <div class="card-footer bg-transparent border-default">Footer</div>
-  </div>
-{% endif %}
+
+{{ score }}
+
 {% endblock %}

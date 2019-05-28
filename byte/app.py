@@ -4,27 +4,23 @@ import model
 app = Flask(__name__)
 model.init_db()
 
+byte_skills = ['python','javascript','machine-learning','deep-learning','nlp','web-technologies','front-end','sql','html','css','jquery',
+'bootstrap','mongo-db','git','web-development','data-analytics','data-mining','data-analysis','algorithms','text-mining','consulting','open-source'
+'logistic-regression','angular-js','node-js','ajax','mongodb','react-js','open-source','big-data','hadoop','spark']
+
 @app.route("/", methods=["POST","GET"])
 def home():
-    if  request.method == 'POST':
-        if request.form['action'] == 'search':
-            action = request.form['action']
-            todos = model.show()
-            players = request.form.getlist('check')
-            # item = request.form['todos[0]']
-            item = model.get_score(players)
-            return render_template('home.html', todos = todos, action = action, item = item)
+    if request.method == 'POST' and (request.form['action'] == 'fullstack' or request.form['action']=='datascience'):
+        role = request.form['action']
+        skill_dict = {}
+        skill_dict = model.manual_list(role=request.form['action'])
+        selected_skills = request.form.getlist('check')
+        score = 0
+        score = model.get_manual_score(selected_skills, skill_dict)
+        return render_template('home.html', skills = skill_dict.keys(), role = role, score = round(score,2), view_more = True, byte_skills = byte_skills)
 
-        elif request.form['action'] == 'science':
-            action = request.form['action']
-            todos = model.datasci()
-            return render_template('home.html',todos = todos, action = action)
-
-    elif request.method == 'GET':
-         return render_template('home.html')
-
-
-
+    else:
+        return render_template('home.html', view_more = False)
 
 if __name__ == "__main__":
 	app.run(debug=True)
